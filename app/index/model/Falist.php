@@ -44,8 +44,17 @@ class Falist extends Model
             $fadet['is_payment'] = $fadet['is_payment'] == 1 ? "已付款": "未付款";
             $fadet['name'] = model('User')->where('uid',$fadet['uid'])->value('name');
         }
-
         return $list;
+    }
 
+    public function addFa($data){
+        return model('Falist')->save([
+            'name' => $data['name'],
+            'start_time' => $data['start_time'],
+            'end_time' => $data['end_time'],
+            'introduce' => $data['introduce'],
+            'state' => '1',
+            'uid' => '3'
+        ]);
     }
 }

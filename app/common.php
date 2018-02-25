@@ -16,7 +16,7 @@
  * @param string $code 状态码
  * @return mixed
  */
-function apiSuccess($data, $code = "200"){
+function apiSuccess($data = [], $code = "200"){
     $arr['data'] = $data;
     $arr['code'] = $code;
     return json($arr);

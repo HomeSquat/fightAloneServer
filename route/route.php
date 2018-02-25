@@ -14,8 +14,10 @@ Route::get('think', function () {
 });
 
 Route::get('hello/:name', 'index/hello');
+//Route::post('addFa', 'index/index/addFa');
 
 return [
     'faList' => 'index/index/faList',
-    'faDetails' => 'index/index/faDetails'
+    'faDetails' => 'index/index/faDetails',
+    'addFa' => ['index/index/addFa', ['method' => 'post']],
 ];

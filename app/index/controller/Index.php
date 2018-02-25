@@ -23,4 +23,19 @@ class Index extends Controller
         $faDetail = model('Falist')->faDetail($id);
         return apiSuccess($faDetail);
     }
+    
+    public function addFa(){
+        $name = input('post.name');
+        $start_time = input('post.start_time');
+        $end_time = input('post.end_time');
+        $introduce = input('post.introduce');
+        model('Falist')->save([
+            'name' => $name,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'introduce' => $introduce,
+            'state' => '1',
+            'uid' => '3'
+        ]);
+    }
 }

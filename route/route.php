@@ -20,4 +20,5 @@ return [
     'faList' => 'index/index/faList',
     'faDetails' => 'index/index/faDetails',
     'addFa' => ['index/index/addFa', ['method' => 'post']],
+    'login' => ['index/index/login', ['method' => 'post']]
 ];

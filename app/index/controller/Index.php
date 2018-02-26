@@ -13,21 +13,49 @@ class Index extends Controller
         return 'hello,' . $name;
     }
 
+    /**
+     * @name 获取拼单列表
+     * @return mixed
+     * @author dongdongjie <zdj@ourstu.com>
+     */
     public function faList(){
         $faList = model('Falist')->selectFaList();
         return apiSuccess($faList);
     }
 
+    /**
+     * @name 获取拼单详情
+     * @return mixed
+     * @author dongdongjie <zdj@ourstu.com>
+     */
     public function faDetails(){
         $id = input('id');
         $faDetail = model('Falist')->faDetail($id);
         return apiSuccess($faDetail);
     }
-    
+
+    /**
+     * @name 发起新的拼单
+     * @return mixed
+     * @author dongdongjie <zdj@ourstu.com>
+     */
     public function addFa(){
         $post = input('post.');
-        if(model('Falist')->addFa($post)){
-            return apiSuccess();
+        $id = model('Falist')->addFa($post);
+        if($id){
+            $newFa = model('Falist')->where('id',$id)->find();
+            $newFa['user'] = model('User')->field('name')->where('uid',$newFa['uid'])->find();
+            return apiSuccess($newFa);
+        }else{
+            //TODO apiError
+        }
+    }
+
+    public function login(){
+        $post = input('post.');
+        $user = model('User')->where(['name'=>$post['username'],'password'=>$post['userpassword']])->find();
+        if($user){
+            return apiSuccess($user);
         }else{
             //TODO apiError
         }

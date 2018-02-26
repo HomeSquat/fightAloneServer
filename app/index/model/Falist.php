@@ -47,8 +47,13 @@ class Falist extends Model
         return $list;
     }
 
+    /**
+     * @name 新增拼单
+     * @param $data 由前台传递过来的值
+     * @return mixed 返回新增拼单的id
+     */
     public function addFa($data){
-        return model('Falist')->save([
+        $newFa = Falist::create([
             'name' => $data['name'],
             'start_time' => $data['start_time'],
             'end_time' => $data['end_time'],
@@ -56,5 +61,6 @@ class Falist extends Model
             'state' => '1',
             'uid' => '3'
         ]);
+        return $newFa->id; // 获取自增ID
     }
 }
